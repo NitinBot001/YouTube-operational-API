@@ -1,8 +1,9 @@
 # Use an official PHP image with Apache
 FROM php:8.0-apache
 
-# Install required system dependencies
-RUN apt-get update && apt-get install -y \
+# Update package list and install required system dependencies
+RUN apt update && \
+    apt install -y \
     git \
     unzip \
     libapache2-mod-php \
@@ -15,14 +16,13 @@ RUN apt-get update && apt-get install -y \
     php-gd \
     php-sqlite3 \
     php-pgsql \
-    curl \
-    && docker-php-ext-install pdo_mysql
+    curl
 
 # Enable Apache rewrite module
 RUN a2enmod rewrite
 
 # Clone your forked repository into the Apache document root
-RUN git clone https://github.com/NitinBot001/YouTube-operational-API.git /var/www/html
+RUN git clone https://github.com/YOUR_USERNAME/YouTube-operational-API.git /var/www/html
 
 # Set the working directory
 WORKDIR /var/www/html
